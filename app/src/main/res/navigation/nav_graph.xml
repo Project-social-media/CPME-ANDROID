@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/connexionFragment">
+
+    <fragment
+        android:id="@+id/connexionFragment"
+        android:name="edu.intech.mediatech.ConnexionFragment"
+        android:label="fragment_connexion"
+        tools:layout="@layout/fragment_connexion" >
+        <action
+            android:id="@+id/action_connexionFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
+        <action
+            android:id="@+id/action_connexionFragment_to_lostFragmentPassword"
+            app:destination="@id/lostFragmentPassword" />
+    </fragment>
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="edu.intech.mediatech.DashboardFragment"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_connexionFragment"
+            app:destination="@id/connexionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/lostFragmentPassword"
+        android:name="edu.intech.mediatech.LostFragmentPassword"
+        android:label="fragment_lost_password"
+        tools:layout="@layout/fragment_lost_password" >
+        <action
+            android:id="@+id/action_lostFragmentPassword_to_connexionFragment"
+            app:destination="@id/connexionFragment" />
+    </fragment>
+</navigation>
