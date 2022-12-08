@@ -15,4 +15,7 @@
     <string name="dashboardStats">Statistiques récentes (24h)</string>
     <string name="dashboardTypeStats">(Abonnés)</string>
     <string name="dashboardAccessbtn">Accéder</string>
+
+
+    <string name="dashboardTitle">Bienvenue Anthony</string>
 </resources>
