@@ -12,27 +12,29 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import edu.intech.mediatech.R;
-import edu.intech.mediatech.databinding.FragmentDashboardBinding;
+import edu.intech.mediatech.databinding.FragmentPostCreationBinding;
 
+public class PostCreationFragment extends Fragment {
 
-public class DashboardFragment extends Fragment {
+    FragmentPostCreationBinding binding;
 
-    FragmentDashboardBinding binding;
-    public static String dashboardDataType = "subs";
-
-    public DashboardFragment() {
+    public PostCreationFragment() {
         // Required empty public constructor
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentDashboardBinding.inflate(inflater, container, false);
+        // Inflate the layout for this fragment
+        binding = FragmentPostCreationBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -40,12 +42,9 @@ public class DashboardFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.button.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(R.id.action_dashboardFragment_to_settingsFragment);
-        });
-
-        binding.btnPostcrt.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(R.id.action_dashboardFragment_to_postCreationFragment);
+        binding.fgtBackBtn.setOnClickListener(v -> {
+            Navigation.findNavController(v).navigate(R.id.action_postCreationFragment_to_dashboardFragment);
         });
     }
+
 }

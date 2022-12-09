@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_dashboardFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_postCreationFragment"
+            app:destination="@id/postCreationFragment" />
     </fragment>
     <fragment
         android:id="@+id/lostFragmentPassword"
@@ -43,4 +46,13 @@
         android:name="edu.intech.mediatech.models.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/postCreationFragment"
+        android:name="edu.intech.mediatech.models.PostCreationFragment"
+        android:label="fragment_post_creation"
+        tools:layout="@layout/fragment_post_creation" >
+        <action
+            android:id="@+id/action_postCreationFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
+    </fragment>
 </navigation>
