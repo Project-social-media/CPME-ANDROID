@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.MEDIATECH" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.MEDIATECH" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -11,6 +11,16 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- APPLY MEDIATEC.BTN TO ALL BUTTONS -->
+        <item name="buttonStyle">@style/mediatech.btn</item>
         <!-- Customize your theme here. -->
+    </style>
+    <style name="mediatech.btn"  parent="Widget.Material3.Button.ElevatedButton">
+        <item name="android:textSize">14sp</item>
+        <item name="shapeAppearanceOverlay">@style/mediatech.btn.shapeOverlay</item>
+    </style>
+    <style name="mediatech.btn.shapeOverlay" parent="ShapeAppearanceOverlay.Material3.Button">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">10dp</item>
     </style>
 </resources>

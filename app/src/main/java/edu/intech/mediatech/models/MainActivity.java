@@ -1,8 +1,10 @@
-package edu.intech.mediatech;
+package edu.intech.mediatech.models;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import edu.intech.mediatech.R;
 
 public class MainActivity extends AppCompatActivity {
 

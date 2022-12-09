@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:backgroundTint="@null"
     android:orientation="vertical"
-    tools:context=".DashboardFragment">
+    tools:context=".models.DashboardFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/dashboard_header"
@@ -64,7 +64,8 @@
                 android:id="@+id/dashboard_box_1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:backgroundTint="#DDDDDD">
 
                 <LinearLayout
                     android:id="@+id/dashboard_box_1_layout"
@@ -73,7 +74,8 @@
                     android:layout_marginStart="11dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="11dp"
-                    android:background="@drawable/dashboard_box_shape"
+                    android:background="@drawable/boxes_shape"
+                    android:backgroundTint="@color/boxes_color"
                     android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -189,12 +191,13 @@
 
                                 <Button
                                     android:id="@+id/facebook_btn"
+                                    style="@style/mediatech.btn"
                                     android:layout_width="120dp"
                                     android:layout_height="40dp"
-                                    android:background="@drawable/button_facebook_shape"
+                                    android:backgroundTint="#1877F2"
                                     android:fontFamily="@font/montserrat_medium"
                                     android:text="@string/dashboardAccessbtn"
-                                    app:backgroundTint="@null"
+                                    android:textColor="#FFFFFF"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -279,14 +282,16 @@
 
                                 <Button
                                     android:id="@+id/instagram_btn"
+                                    style="@style/mediatech.btn"
                                     android:layout_width="120dp"
                                     android:layout_height="40dp"
-                                    android:background="@drawable/button_instagram_shape"
+                                    android:backgroundTint="#EE115E"
                                     android:fontFamily="@font/montserrat_medium"
                                     android:text="@string/dashboardAccessbtn"
-                                    app:backgroundTint="@null"
+                                    android:textColor="#FFFFFF"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.4"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent"
                                     tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
@@ -368,12 +373,13 @@
 
                                 <Button
                                     android:id="@+id/button4"
+                                    style="@style/mediatech.btn"
                                     android:layout_width="120dp"
                                     android:layout_height="40dp"
-                                    android:background="@drawable/button_linkedin_shape"
                                     android:fontFamily="@font/montserrat_medium"
                                     android:text="@string/dashboardAccessbtn"
-                                    app:backgroundTint="@null"
+                                    android:textColor="#FFFFFF"
+                                    app:backgroundTint="#0172B1"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -458,12 +464,13 @@
 
                                 <Button
                                     android:id="@+id/button3"
+                                    style="@style/mediatech.btn"
                                     android:layout_width="120dp"
                                     android:layout_height="40dp"
-                                    android:background="@drawable/button_twitter_shape"
                                     android:fontFamily="@font/montserrat_medium"
                                     android:text="@string/dashboardAccessbtn"
-                                    app:backgroundTint="@null"
+                                    android:textColor="#FFFFFF"
+                                    app:backgroundTint="#00AEEF"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -489,7 +496,8 @@
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="11dp"
                     android:layout_marginBottom="6dp"
-                    android:background="@drawable/dashboard_box_shape"
+                    android:background="@drawable/boxes_shape"
+                    android:backgroundTint="@color/boxes_color"
                     android:orientation="horizontal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -510,12 +518,24 @@
                     android:layout_marginTop="6dp"
                     android:layout_marginEnd="11dp"
                     android:layout_marginBottom="12dp"
-                    android:background="@drawable/dashboard_box_shape"
+                    android:background="@drawable/boxes_shape"
+                    android:backgroundTint="@color/boxes_color"
                     android:orientation="horizontal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"></LinearLayout>
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <Button
+                        android:id="@+id/button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="0dp"
+                        android:text="Button"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+                </LinearLayout>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

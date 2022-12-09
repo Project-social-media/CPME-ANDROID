@@ -1,4 +1,4 @@
-package edu.intech.mediatech;
+package edu.intech.mediatech.models;
 
 import android.os.Bundle;
 
@@ -11,20 +11,21 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.List;
 
+import edu.intech.mediatech.R;
 import edu.intech.mediatech.databinding.FragmentConnexionBinding;
+import edu.intech.mediatech.repositories.UserRepository;
+import edu.intech.mediatech.repositories.services.UserService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ConnexionFragment extends Fragment {
+
 
     FragmentConnexionBinding binding;
 
@@ -52,11 +53,16 @@ public class ConnexionFragment extends Fragment {
             String email = binding.connexionUserBox.getText().toString();
             String password = binding.connexionPasswordBox.getText().toString();
 
-            if (email.equals("admin") && password.equals("admin")) {
-                Navigation.findNavController(v).navigate(R.id.action_connexionFragment_to_dashboardFragment);
-            } else {
-                Toast.makeText(getContext(), "Email ou mot de passe incorrect", Toast.LENGTH_SHORT).show();
-            }
+            User u = new User(email, password);
+
+            UserRepository.getInstance().authenticateUser(u).observe(getViewLifecycleOwner(), user -> {
+                if (user != null) {
+                    Toast.makeText(getContext(), "Connexion réussie", Toast.LENGTH_SHORT).show();
+                    Navigation.findNavController(v).navigate(R.id.action_connexionFragment_to_dashboardFragment);
+                } else {
+                    Toast.makeText(getContext(), "Connexion échouée", Toast.LENGTH_SHORT).show();
+                }
+            });
         });
 
         binding.connexionForgotPwdBtn.setOnClickListener(v -> {

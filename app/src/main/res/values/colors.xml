@@ -9,6 +9,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="cpmeMainRed">#A81815</color>
 
+    <color name="boxes_color">#DDDDDD</color>
+
     <color name="placeholderColor">#222222</color>$
     <color name="placeholderColor2">#0C7500</color>$
 </resources>

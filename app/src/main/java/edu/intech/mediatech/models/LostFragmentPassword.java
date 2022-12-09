@@ -1,4 +1,4 @@
-package edu.intech.mediatech;
+package edu.intech.mediatech.models;
 
 import android.os.Bundle;
 
@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import java.util.Objects;
 
+import edu.intech.mediatech.R;
 import edu.intech.mediatech.databinding.FragmentConnexionBinding;
 import edu.intech.mediatech.databinding.FragmentLostPasswordBinding;
 import kotlin.text.Regex;
