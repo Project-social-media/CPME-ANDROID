@@ -10,6 +10,12 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.Date;
 
 import edu.intech.mediatech.R;
 import edu.intech.mediatech.databinding.FragmentPostCreationBinding;
@@ -45,6 +51,31 @@ public class PostCreationFragment extends Fragment {
         binding.fgtBackBtn.setOnClickListener(v -> {
             Navigation.findNavController(v).navigate(R.id.action_postCreationFragment_to_dashboardFragment);
         });
+
+        binding.fgtPostValidateBtn.setOnClickListener(v -> {
+            String body = binding.fgtPostcrtBodyInput.getText().toString();
+            String media = binding.fgtPostcrtMediaLink.getText().toString();
+
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            Date date = null;
+
+            try {
+                date = sdf.parse(binding.fgtPostcrtDate.getText().toString());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            boolean facebook = binding.frgPostcrtChipFacebook.isChecked();
+            boolean instagram = binding.frgPostcrtChipInstagram.isChecked();
+            boolean linkedin = binding.frgPostcrtChipLinkedin.isChecked();
+            boolean twitter = binding.frgPostcrtChipTwitter.isChecked();
+
+            Post post = new Post(body, Collections.singletonList(media), date, facebook, instagram, linkedin, twitter);
+
+            binding.fgtPostcrtBodyInput.setText(post.toString());
+        });
+
+
     }
 
 }

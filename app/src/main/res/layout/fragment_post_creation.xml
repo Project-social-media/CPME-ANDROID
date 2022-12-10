@@ -19,12 +19,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/img_sky_background" />
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="300dp"
-        android:layout_height="500dp"
+        android:layout_height="600dp"
         android:background="@drawable/boxes_shape"
         android:backgroundTint="#FEFEFE"
         android:elevation="10dp"
@@ -57,11 +59,10 @@
             android:hint="@string/PostDateContent"
             android:inputType="date"
             android:minHeight="48dp"
-            android:textColorHint="@color/placeholderColor"
+            android:textColorHint="#757575"
             android:textSize="14sp"
-            app:layout_constraintBottom_toTopOf="@+id/fgt_pwd_validate_btn"
+            app:layout_constraintBottom_toTopOf="@+id/chipGroup"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fgt_postcrt_mediaLink"
             tools:ignore="LabelFor,TextFields" />
@@ -76,15 +77,13 @@
             android:hint="@string/fgt_postcrt_media"
             android:inputType="textPersonName"
             android:minHeight="48dp"
-            android:textColorHint="@color/placeholderColor"
+            android:textColorHint="#757575"
             android:textSize="14sp"
             app:layout_constraintBottom_toTopOf="@+id/fgt_postcrt_date"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
             tools:ignore="LabelFor,TextFields" />
-
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -105,12 +104,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="start"
-                android:textSize="11dp" />
+                android:textColorHint="#757575"
+                android:textSize="11sp" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <Button
-            android:id="@+id/fgt_pwd_validate_btn"
+            android:id="@+id/fgt_post_validate_btn"
 
             style="@style/mediatech.btn"
             android:layout_width="160dp"
@@ -119,11 +120,58 @@
             android:fontFamily="@font/montserrat_semibold"
             android:text="@string/validateRecoverContent"
             android:textColor="@color/cpmeMainRed"
-            app:backgroundTint="#EEEEEE"
             android:textSize="18sp"
+            app:backgroundTint="#EEEEEE"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/fgt_post_validate_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fgt_postcrt_date">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/frg_postcrt_chip_facebook"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                app:chipIcon="@drawable/facebook_logo"
+                app:chipIconVisible="true"
+                tools:ignore="DuplicateSpeakableTextCheck" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/frg_postcrt_chip_instagram"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                app:chipIcon="@drawable/instagram_logo"
+                app:chipIconVisible="true" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/frg_postcrt_chip_linkedin"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                app:chipIcon="@drawable/linkedin_logo"
+                app:chipIconVisible="true" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/frg_postcrt_chip_twitter"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                app:chipIcon="@drawable/twitter_logo"
+                app:chipIconVisible="true" />
+        </com.google.android.material.chip.ChipGroup>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
