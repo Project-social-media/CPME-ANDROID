@@ -11,20 +11,8 @@
         android:label="fragment_connexion"
         tools:layout="@layout/fragment_connexion" >
         <action
-            android:id="@+id/action_connexionFragment_to_dashboardFragment"
-            app:destination="@id/dashboardFragment" />
-        <action
             android:id="@+id/action_connexionFragment_to_lostFragmentPassword"
             app:destination="@id/lostFragmentPassword" />
-    </fragment>
-    <fragment
-        android:id="@+id/dashboardFragment"
-        android:name="edu.intech.mediatech.DashboardFragment"
-        android:label="fragment_dashboard"
-        tools:layout="@layout/fragment_dashboard" >
-        <action
-            android:id="@+id/action_dashboardFragment_to_connexionFragment"
-            app:destination="@id/connexionFragment" />
     </fragment>
     <fragment
         android:id="@+id/lostFragmentPassword"

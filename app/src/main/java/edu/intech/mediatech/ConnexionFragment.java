@@ -1,5 +1,6 @@
 package edu.intech.mediatech;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -53,7 +54,8 @@ public class ConnexionFragment extends Fragment {
             String password = binding.connexionPasswordBox.getText().toString();
 
             if (email.equals("admin") && password.equals("admin")) {
-                Navigation.findNavController(v).navigate(R.id.action_connexionFragment_to_dashboardFragment);
+                Intent intent = new Intent(getActivity(), DashboardActivity.class);
+                startActivity(intent);
             } else {
                 Toast.makeText(getContext(), "Email ou mot de passe incorrect", Toast.LENGTH_SHORT).show();
             }
