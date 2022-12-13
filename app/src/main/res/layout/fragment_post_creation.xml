@@ -9,19 +9,21 @@
     android:elevation="4dp"
     tools:context=".models.PostCreationFragment">
 
+
     <ImageView
         android:id="@+id/post_creation_iv_sky"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:alpha="0.5"
+        android:contentDescription="@string/img_sky_background"
         android:scaleType="centerCrop"
         android:src="@drawable/background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/img_sky_background" />
-
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -64,8 +66,7 @@
             app:layout_constraintBottom_toTopOf="@+id/chipGroup"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fgt_postcrt_mediaLink"
-            tools:ignore="LabelFor,TextFields" />
+            app:layout_constraintTop_toBottomOf="@+id/fgt_postcrt_mediaLink" />
 
         <EditText
             android:id="@+id/fgt_postcrt_mediaLink"
@@ -172,6 +173,16 @@
                 app:chipIcon="@drawable/twitter_logo"
                 app:chipIconVisible="true" />
         </com.google.android.material.chip.ChipGroup>
+
+        <Button
+            android:id="@+id/fgt_btn_date_dialog"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/calendar"
+            app:layout_constraintBottom_toBottomOf="@+id/fgt_postcrt_date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/fgt_postcrt_date"
+            app:layout_constraintTop_toTopOf="@+id/fgt_postcrt_date" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
