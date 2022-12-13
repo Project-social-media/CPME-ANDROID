@@ -1,4 +1,4 @@
-package edu.intech.mediatech;
+package edu.intech.mediatech.models.fragments;
 
 import android.os.Bundle;
 
@@ -18,6 +18,7 @@ import edu.intech.mediatech.databinding.FragmentDashboardBinding;
 public class DashboardFragment extends Fragment {
 
     FragmentDashboardBinding binding;
+    public static String dashboardDataType = "subs";
 
     public DashboardFragment() {
         // Required empty public constructor

@@ -1,4 +1,4 @@
-package edu.intech.mediatech;
+package edu.intech.mediatech.models.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,25 +7,21 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
-import java.util.List;
 
+import edu.intech.mediatech.R;
 import edu.intech.mediatech.databinding.FragmentConnexionBinding;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+import edu.intech.mediatech.models.DashboardActivity;
+import edu.intech.mediatech.models.bdd.User;
+import edu.intech.mediatech.repositories.UserRepository;
 
 public class ConnexionFragment extends Fragment {
+
 
     FragmentConnexionBinding binding;
 
@@ -53,12 +49,19 @@ public class ConnexionFragment extends Fragment {
             String email = binding.connexionUserBox.getText().toString();
             String password = binding.connexionPasswordBox.getText().toString();
 
-            if (email.equals("admin") && password.equals("admin")) {
-                Intent intent = new Intent(getActivity(), DashboardActivity.class);
-                startActivity(intent);
-            } else {
-                Toast.makeText(getContext(), "Email ou mot de passe incorrect", Toast.LENGTH_SHORT).show();
-            }
+            User u = new User(email, password);
+
+            UserRepository.getInstance().authenticateUser(u).observe(getViewLifecycleOwner(), user -> {
+                if (user != null) {
+                    Toast.makeText(getContext(), "Connexion réussie", Toast.LENGTH_SHORT).show();
+                    binding.connexionUserBox.setText("");
+                    binding.connexionPasswordBox.setText("");
+                    Intent intent = new Intent(getActivity(), DashboardActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getContext(), "Connexion échouée", Toast.LENGTH_SHORT).show();
+                }
+            });
         });
 
         binding.connexionForgotPwdBtn.setOnClickListener(v -> {

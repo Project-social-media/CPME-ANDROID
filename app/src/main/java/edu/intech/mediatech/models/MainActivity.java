@@ -1,14 +1,11 @@
-package edu.intech.mediatech;
+package edu.intech.mediatech.models;
 
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.os.Bundle;
-import android.view.MenuItem;
 
-import com.google.android.material.navigation.NavigationView;
+import edu.intech.mediatech.R;
 
 public class MainActivity extends AppCompatActivity {
 
