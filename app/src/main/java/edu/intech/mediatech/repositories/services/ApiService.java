@@ -4,7 +4,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiService {
-    public static final String BASE_URL = "http://10.0.2.2:3000/";
+    public static final String BASE_URL = "https://api.nauwk.fr";
 
     private static Retrofit retrofit = null;
     private static Retrofit getRetrofitInstance() {
@@ -20,5 +20,9 @@ public class ApiService {
     //static getter for UserService
     public static UserService getUserService() {
         return getRetrofitInstance().create(UserService.class);
+    }
+
+    public static PostService getPostService() {
+        return getRetrofitInstance().create(PostService.class);
     }
 }

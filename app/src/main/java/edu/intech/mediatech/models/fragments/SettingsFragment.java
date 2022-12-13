@@ -1,4 +1,4 @@
-package edu.intech.mediatech.models;
+package edu.intech.mediatech.models.fragments;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;

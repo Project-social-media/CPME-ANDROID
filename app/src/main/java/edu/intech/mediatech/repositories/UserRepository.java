@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
 
-import edu.intech.mediatech.models.User;
+import edu.intech.mediatech.models.bdd.User;
 import edu.intech.mediatech.repositories.services.ApiService;
 import retrofit2.Call;
 import retrofit2.Callback;

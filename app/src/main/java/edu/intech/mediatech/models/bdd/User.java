@@ -1,4 +1,4 @@
-package edu.intech.mediatech.models;
+package edu.intech.mediatech.models.bdd;
 
 public class User {
     private String username;

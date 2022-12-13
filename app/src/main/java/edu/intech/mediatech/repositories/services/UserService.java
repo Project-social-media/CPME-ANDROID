@@ -2,10 +2,8 @@ package edu.intech.mediatech.repositories.services;
 
 import java.util.List;
 
-import edu.intech.mediatech.models.User;
+import edu.intech.mediatech.models.bdd.User;
 import retrofit2.Call;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;

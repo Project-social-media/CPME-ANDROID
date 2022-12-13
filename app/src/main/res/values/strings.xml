@@ -15,8 +15,16 @@
     <string name="dashboardStats">Statistiques récentes (24h)</string>
     <string name="dashboardTypeStats">(Abonnés)</string>
     <string name="dashboardAccessbtn">Accéder</string>
-
-
     <string name="dashboardTitle">Bienvenue Anthony</string>
+
+    <string name="burgerMenu1stOption">Accueil</string>
+    <string name="burgerMenu2ndOption">Création de posts</string>
+    <string name="burgerMenu3rdOption">Calendrier</string>
+    <string name="burgerMenu4thOption">Paramètres</string>
+    <string name="burgerMenu5thOption">Se déconnecter</string>
+
+
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
 
 </resources>
