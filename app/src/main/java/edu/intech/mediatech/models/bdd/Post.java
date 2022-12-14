@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Post {
 
-    private int id;
+    private String _id;
     private String message;
     private String media;
     private Date date;
@@ -13,8 +13,8 @@ public class Post {
     private boolean linkedin;
     private boolean instagram;
 
-    public Post(int id, String message, String media, Date date, boolean facebook, boolean twitter, boolean linkedin, boolean instagram) {
-        this.id = id;
+    public Post(String _id, String message, String media, Date date, boolean facebook, boolean twitter, boolean linkedin, boolean instagram) {
+        this._id = _id;
         this.message = message;
         this.media = media;
         this.date = date;
@@ -24,12 +24,12 @@ public class Post {
         this.instagram = instagram;
     }
 
-    public int getId() {
-        return id;
+    public String getId() {
+        return _id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(String _id) {
+        this._id = _id;
     }
 
     public String getMessage() {

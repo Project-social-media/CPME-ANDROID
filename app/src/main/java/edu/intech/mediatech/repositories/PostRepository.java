@@ -1,11 +1,13 @@
 package edu.intech.mediatech.repositories;
 
 import android.util.Log;
-import android.widget.ListPopupWindow;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import edu.intech.mediatech.models.bdd.Post;
@@ -27,6 +29,7 @@ public class PostRepository {
 
     public LiveData<List<Post>> getAllPosts() {
         final MutableLiveData<List<Post>> data = new MutableLiveData<>();
+        final List<Post> allPosts = new ArrayList<>();
 
         // Create the global callback
         Callback<List<Post>> callback = new Callback<List<Post>>() {
@@ -35,12 +38,16 @@ public class PostRepository {
                 Log.d("request", "onResponse: " + response.toString());
                 List<Post> posts = response.body();
                 assert posts != null;
-                data.setValue(posts);
+                allPosts.addAll(posts);
+
+                Collections.sort(allPosts, (post1, post2) -> post2.getDate().compareTo(post1.getDate()));
+
+                data.setValue(allPosts);
             }
 
             @Override
             public void onFailure(Call<List<Post>> call, Throwable t) {
-                Log.d("TAG", "onFailure: " + call.request().toString());
+                Log.d("TAG", "onFailure: " + call.request());
                 Log.d("TAG", "onFailure: " + t.getMessage());
             }
         };
@@ -50,8 +57,8 @@ public class PostRepository {
         Call<List<Post>> callArchivedPosts = ApiService.getPostService().getArchivedPosts();
         call.enqueue(callback);
         callArchivedPosts.enqueue(callback);
-
         return data;
     }
+
 
 }

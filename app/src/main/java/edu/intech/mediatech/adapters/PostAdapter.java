@@ -1,28 +1,29 @@
 package edu.intech.mediatech.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import edu.intech.mediatech.R;
 import edu.intech.mediatech.models.bdd.Post;
-import edu.intech.mediatech.models.interfaces.RvItemClickListener;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder> {
 
     private final Context ctx;
     private final List<Post> posts;
-
-    RvItemClickListener listener;
 
     public PostAdapter(Context ctx, List<Post> posts) {
         this.ctx = ctx;
@@ -39,7 +40,21 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull PostViewHolder holder, int position) {
-        holder.id.setText(String.valueOf(posts.get(position).getMessage().substring(0, 10).concat("...")));
+        holder.message.setText(String.valueOf(posts.get(position).getMessage()).substring(0, 7).concat("..."));
+
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/YY");
+        String formattedDate = dateFormat.format(posts.get(position).getDate());
+
+        holder.date.setText(formattedDate);
+
+        long currentTimeMillis = System.currentTimeMillis();
+        Date currentDate = new Date(currentTimeMillis);
+
+        if (posts.get(position).getDate().before(currentDate)) {
+            holder.statusIcon.setImageDrawable(ContextCompat.getDrawable(ctx, R.drawable.finished));
+        } else {
+            holder.statusIcon.setImageDrawable(ContextCompat.getDrawable(ctx, R.drawable.timed));
+        }
     }
 
     @Override
@@ -48,18 +63,17 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
     }
 
     protected static class PostViewHolder extends RecyclerView.ViewHolder {
-        TextView id;
+        TextView message;
+        ImageView statusIcon;
+        TextView date;
         ConstraintLayout constraintLayout;
 
         private PostViewHolder(View itemView) {
             super(itemView);
-            this.id = itemView.findViewById(R.id.post_id);
+            this.message = itemView.findViewById(R.id.post_message);
+            this.statusIcon = itemView.findViewById(R.id.status_icon);
+            this.date = itemView.findViewById(R.id.date_text);
             this.constraintLayout = itemView.findViewById(R.id.post_main_layout);
-
         }
-    }
-
-    public void setListener(RvItemClickListener listener) {
-        this.listener = listener;
     }
 }

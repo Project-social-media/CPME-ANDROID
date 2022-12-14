@@ -20,10 +20,19 @@
         android:id="@+id/calendarFragment"
         android:name="edu.intech.mediatech.models.fragments.CalendarFragment"
         android:label="fragment_calendar"
-        tools:layout="@layout/fragment_calendar" />
+        tools:layout="@layout/fragment_calendar" >
+        <action
+            android:id="@+id/action_calendarFragment_to_postDetailFragment"
+            app:destination="@id/postDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="edu.intech.mediatech.models.fragments.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/postDetailFragment"
+        android:name="edu.intech.mediatech.PostDetailFragment"
+        android:label="fragment_post_detail"
+        tools:layout="@layout/fragment_post_detail" />
 </navigation>
