@@ -1,6 +1,7 @@
 package edu.intech.mediatech.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +39,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull PostViewHolder holder, int position) {
-        holder.sender.setText(posts.get(position).getId());
+        holder.id.setText(String.valueOf(posts.get(position).getMessage().substring(0, 10).concat("...")));
     }
 
     @Override
@@ -47,12 +48,12 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
     }
 
     protected static class PostViewHolder extends RecyclerView.ViewHolder {
-        TextView sender;
+        TextView id;
         ConstraintLayout constraintLayout;
 
         private PostViewHolder(View itemView) {
             super(itemView);
-            this.sender = itemView.findViewById(R.id.post_id);
+            this.id = itemView.findViewById(R.id.post_id);
             this.constraintLayout = itemView.findViewById(R.id.post_main_layout);
 
         }

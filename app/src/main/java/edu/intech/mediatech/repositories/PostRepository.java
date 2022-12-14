@@ -1,6 +1,7 @@
 package edu.intech.mediatech.repositories;
 
 import android.util.Log;
+import android.widget.ListPopupWindow;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -26,8 +27,9 @@ public class PostRepository {
 
     public LiveData<List<Post>> getAllPosts() {
         final MutableLiveData<List<Post>> data = new MutableLiveData<>();
-        Call<List<Post>> call = ApiService.getPostService().getPosts();
-        call.enqueue(new Callback<List<Post>>() {
+
+        // Create the global callback
+        Callback<List<Post>> callback = new Callback<List<Post>>() {
             @Override
             public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
                 Log.d("request", "onResponse: " + response.toString());
@@ -41,7 +43,15 @@ public class PostRepository {
                 Log.d("TAG", "onFailure: " + call.request().toString());
                 Log.d("TAG", "onFailure: " + t.getMessage());
             }
-        });
+        };
+
+        // Use the global callback for both API calls
+        Call<List<Post>> call = ApiService.getPostService().getNotPostedPosts();
+        Call<List<Post>> callArchivedPosts = ApiService.getPostService().getArchivedPosts();
+        call.enqueue(callback);
+        callArchivedPosts.enqueue(callback);
+
         return data;
     }
+
 }

@@ -1,25 +1,23 @@
 package edu.intech.mediatech.models.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import java.util.List;
 
 import edu.intech.mediatech.adapters.PostAdapter;
 import edu.intech.mediatech.databinding.FragmentCalendarBinding;
-import edu.intech.mediatech.models.DashboardActivity;
 import edu.intech.mediatech.models.bdd.Post;
 import edu.intech.mediatech.repositories.PostRepository;
-import edu.intech.mediatech.repositories.UserRepository;
 
 public class CalendarFragment extends Fragment {
 
@@ -46,6 +44,15 @@ public class CalendarFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        LiveData<List<Post>> posts = PostRepository.getInstance().getAllPosts();
+        //I want to get the posts lists then i can display them in the recyclerview
+        PostRepository postRepository = new PostRepository();
+        LiveData<List<Post>> posts = postRepository.getAllPosts();
+        posts.observe(getViewLifecycleOwner(), posts1 -> {
+            PostAdapter postAdapter = new PostAdapter(getContext(), posts1);
+            binding.calendarList.setLayoutManager(new LinearLayoutManager(getContext()));
+            binding.calendarList.setAdapter(postAdapter);
+            Log.d("CalendarFragment", "onViewCreated: " + posts.getValue().size());
+        });
+
     }
 }
