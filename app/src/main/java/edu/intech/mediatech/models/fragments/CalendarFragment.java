@@ -10,18 +10,23 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import java.util.List;
 
+import edu.intech.mediatech.R;
 import edu.intech.mediatech.adapters.PostAdapter;
 import edu.intech.mediatech.databinding.FragmentCalendarBinding;
 import edu.intech.mediatech.models.bdd.Post;
 import edu.intech.mediatech.repositories.PostRepository;
+import edu.intech.mediatech.viewmodels.PostViewModel;
 
 public class CalendarFragment extends Fragment {
 
     FragmentCalendarBinding binding;
+    PostViewModel postViewModel;
 
     public CalendarFragment() {
         // Required empty public constructor
@@ -43,12 +48,15 @@ public class CalendarFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        postViewModel = new ViewModelProvider(requireActivity()).get(PostViewModel.class);
 
-        //I want to get the posts lists then i can display them in the recyclerview
         PostRepository postRepository = new PostRepository();
         LiveData<List<Post>> posts = postRepository.getAllPosts();
         posts.observe(getViewLifecycleOwner(), posts1 -> {
-            PostAdapter postAdapter = new PostAdapter(getContext(), posts1);
+            PostAdapter postAdapter = new PostAdapter(getContext(), posts1, post -> {
+                postViewModel.setSelectedPost(post);
+                Navigation.findNavController(view).navigate(R.id.action_calendarFragment_to_postDetailFragment);
+            });
             binding.calendarList.setLayoutManager(new LinearLayoutManager(getContext()));
             binding.calendarList.setAdapter(postAdapter);
             Log.d("CalendarFragment", "onViewCreated: " + posts.getValue().size());

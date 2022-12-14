@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.SimpleDateFormat;
@@ -19,15 +20,18 @@ import java.util.List;
 
 import edu.intech.mediatech.R;
 import edu.intech.mediatech.models.bdd.Post;
+import edu.intech.mediatech.models.interfaces.PostListener;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder> {
 
     private final Context ctx;
     private final List<Post> posts;
+    private PostListener listener;
 
-    public PostAdapter(Context ctx, List<Post> posts) {
+    public PostAdapter(Context ctx, List<Post> posts, PostListener listener) {
         this.ctx = ctx;
         this.posts = posts;
+        this.listener = listener;
     }
 
     @NonNull
@@ -38,11 +42,16 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         return new PostViewHolder(view);
     }
 
+    @SuppressLint("SimpleDateFormat")
     @Override
     public void onBindViewHolder(@NonNull PostViewHolder holder, int position) {
         holder.message.setText(String.valueOf(posts.get(position).getMessage()).substring(0, 7).concat("..."));
 
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/YY");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            dateFormat = new SimpleDateFormat("dd/MM/YY");
+        }
+        assert dateFormat != null;
         String formattedDate = dateFormat.format(posts.get(position).getDate());
 
         holder.date.setText(formattedDate);
@@ -55,6 +64,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         } else {
             holder.statusIcon.setImageDrawable(ContextCompat.getDrawable(ctx, R.drawable.timed));
         }
+
+        holder.constraintLayout.setOnClickListener(v -> {
+            listener.onPostClicked(posts.get(position));
+        });
     }
 
     @Override

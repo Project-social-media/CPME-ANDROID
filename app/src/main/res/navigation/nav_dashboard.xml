@@ -32,7 +32,7 @@
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/postDetailFragment"
-        android:name="edu.intech.mediatech.PostDetailFragment"
+        android:name="edu.intech.mediatech.models.fragments.PostDetailFragment"
         android:label="fragment_post_detail"
         tools:layout="@layout/fragment_post_detail" />
 </navigation>
