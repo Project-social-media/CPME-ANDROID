@@ -59,8 +59,6 @@ public class CalendarFragment extends Fragment {
             });
             binding.calendarList.setLayoutManager(new LinearLayoutManager(getContext()));
             binding.calendarList.setAdapter(postAdapter);
-            Log.d("CalendarFragment", "onViewCreated: " + posts.getValue().size());
         });
-
     }
 }
