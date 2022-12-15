@@ -28,4 +28,8 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
+    <style name="mediatech.icon" parent="Widget.Material3.Button.ElevatedButton">
+        <item name="android:backgroundTint">@color/cpmeMainBlue</item>
+    </style>
 </resources>

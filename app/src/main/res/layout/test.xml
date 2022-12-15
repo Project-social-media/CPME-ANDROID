@@ -179,7 +179,7 @@
             android:id="@+id/fgt_btn_date_dialog"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:background="@drawable/calendar"
+            android:background="@drawable/ic_baseline_edit_calendar_24"
             app:layout_constraintBottom_toBottomOf="@+id/fgt_postcrt_date"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/fgt_postcrt_date"
