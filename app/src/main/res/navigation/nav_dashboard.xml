@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_dashboardFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_editionFragment"
+            app:destination="@id/editionFragment" />
     </fragment>
     <fragment
         android:id="@+id/calendarFragment"
@@ -35,4 +38,9 @@
         android:name="edu.intech.mediatech.models.fragments.PostDetailFragment"
         android:label="fragment_post_detail"
         tools:layout="@layout/fragment_post_detail" />
+    <fragment
+        android:id="@+id/editionFragment"
+        android:name="edu.intech.mediatech.models.fragments.EditionFragment"
+        android:label="fragment_edition"
+        tools:layout="@layout/fragment_edition" />
 </navigation>

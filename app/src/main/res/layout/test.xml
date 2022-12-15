@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ConstraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="top|left"
+    android:elevation="4dp"
+    tools:context=".models.MainActivity">
+
+
+    <ImageView
+        android:id="@+id/post_creation_iv_sky"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0.5"
+        android:contentDescription="@string/img_sky_background"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="340dp"
+        android:layout_height="600dp"
+        android:background="@drawable/boxes_shape"
+        android:backgroundTint="#FEFEFE"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <ImageView
+            android:id="@+id/fgt_back_btn"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:alpha="0.75"
+            android:contentDescription="@drawable/ic_baseline_arrow_back_24"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <EditText
+            android:id="@+id/fgt_postcrt_date"
+            android:layout_width="236dp"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:ems="10"
+            android:enabled="false"
+            android:fontFamily="@font/montserrat_medium"
+            android:hint="@string/PostDateContent"
+            android:inputType="date"
+            android:minHeight="48dp"
+            android:textColorHint="#757575"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toTopOf="@+id/chipGroup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fgt_postcrt_mediaLink" />
+
+        <EditText
+            android:id="@+id/fgt_postcrt_mediaLink"
+            android:layout_width="236dp"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:ems="10"
+            android:fontFamily="@font/montserrat_medium"
+            android:hint="@string/fgt_postcrt_media"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:textColorHint="#757575"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/fgt_postcrt_date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+            tools:ignore="LabelFor,TextFields" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="236dp"
+            android:layout_height="250dp"
+            android:hint="@string/PostBodyContent"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/fgt_postcrt_mediaLink"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fgt_back_btn">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/fgt_postcrt_body_input"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="start"
+                android:textColorHint="#757575"
+                android:textSize="11sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/fgt_post_validate_btn"
+
+            style="@style/mediatech.btn"
+            android:layout_width="160dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/montserrat_semibold"
+            android:text="@string/validateRecoverContent"
+            android:textColor="@color/cpmeMainRed"
+            android:textSize="18sp"
+            app:backgroundTint="#EEEEEE"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/fgt_post_validate_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fgt_postcrt_date">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/frg_postcrt_chip_facebook"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                app:chipIcon="@drawable/facebook_logo"
+                app:chipIconVisible="true"
+                tools:ignore="DuplicateSpeakableTextCheck" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/frg_postcrt_chip_instagram"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                app:chipIcon="@drawable/instagram_logo"
+                app:chipIconVisible="true" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/frg_postcrt_chip_linkedin"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                app:chipIcon="@drawable/linkedin_logo"
+                app:chipIconVisible="true" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/frg_postcrt_chip_twitter"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                app:chipIcon="@drawable/twitter_logo"
+                app:chipIconVisible="true" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <Button
+            android:id="@+id/fgt_btn_date_dialog"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/calendar"
+            app:layout_constraintBottom_toBottomOf="@+id/fgt_postcrt_date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/fgt_postcrt_date"
+            app:layout_constraintTop_toTopOf="@+id/fgt_postcrt_date" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

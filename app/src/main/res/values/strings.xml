@@ -27,4 +27,11 @@
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
 
+    <string name="PostBodyContent">Corps du post</string>
+    <string name="PostDateContent">Date du post</string>
+    <string name="img_sky_background">Sky</string>
+    <string name="fgt_postcrt_media">Lien du média</string>
+    <string name="img_back_arrow">back arrow</string>
+    <string name="slash">/</string>
+
 </resources>

@@ -11,7 +11,7 @@
             android:id="@+id/dashboardFragment"
             android:title="@string/burgerMenu1stOption" />
         <item
-            android:id="@+id/creation_posts"
+            android:id="@+id/editionFragment"
             android:title="@string/burgerMenu2ndOption" />
         <item
             android:id="@+id/calendarFragment"
