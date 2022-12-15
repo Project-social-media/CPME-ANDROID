@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,13 +20,15 @@ import edu.intech.mediatech.databinding.FragmentConnexionBinding;
 import edu.intech.mediatech.models.DashboardActivity;
 import edu.intech.mediatech.models.bdd.User;
 import edu.intech.mediatech.repositories.UserRepository;
+import edu.intech.mediatech.viewmodels.UserViewModel;
 
 public class ConnexionFragment extends Fragment {
 
 
     FragmentConnexionBinding binding;
+    UserViewModel userViewModel;
 
-    public ConnexionFragment() throws IOException {
+    public ConnexionFragment() {
         // Required empty public constructor
     }
 
@@ -38,6 +41,7 @@ public class ConnexionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentConnexionBinding.inflate(inflater, container, false);
+        this.userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         return binding.getRoot();
     }
 
@@ -51,7 +55,7 @@ public class ConnexionFragment extends Fragment {
 
             User u = new User(email, password);
 
-            UserRepository.getInstance().authenticateUser(u).observe(getViewLifecycleOwner(), user -> {
+            userViewModel.authenticateUser(u).observe(getViewLifecycleOwner(), user -> {
                 if (user != null) {
                     Toast.makeText(getContext(), "Connexion réussie", Toast.LENGTH_SHORT).show();
                     binding.connexionUserBox.setText("");

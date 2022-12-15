@@ -42,20 +42,19 @@ public class CalendarFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentCalendarBinding.inflate(inflater, container, false);
+        postViewModel = new ViewModelProvider(requireActivity()).get(PostViewModel.class);
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        postViewModel = new ViewModelProvider(requireActivity()).get(PostViewModel.class);
 
-        PostRepository postRepository = new PostRepository();
-        LiveData<List<Post>> posts = postRepository.getAllPosts();
+        LiveData<List<Post>> posts = PostRepository.getInstance().getAllPosts();
         posts.observe(getViewLifecycleOwner(), posts1 -> {
             PostAdapter postAdapter = new PostAdapter(getContext(), posts1, post -> {
                 postViewModel.setSelectedPost(post);
-                Navigation.findNavController(view).navigate(R.id.action_calendarFragment_to_postDetailFragment);
+                Navigation.findNavController(requireActivity(), R.id.dashboardNavigationHost).navigate(R.id.action_calendarFragment_to_postDetailFragment);
             });
             binding.calendarList.setLayoutManager(new LinearLayoutManager(getContext()));
             binding.calendarList.setAdapter(postAdapter);

@@ -1,5 +1,6 @@
 package edu.intech.mediatech.repositories;
 
+import android.app.Application;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
@@ -7,17 +8,41 @@ import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
 
+import edu.intech.mediatech.dao.UsersDao;
 import edu.intech.mediatech.models.bdd.User;
+import edu.intech.mediatech.models.bdd.UserRoomDatabase;
 import edu.intech.mediatech.repositories.services.ApiService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class UserRepository {
+
+    private UsersDao mUsersDao;
+    private LiveData<List<User>> mAllUsers;
+
+    UserRepository(Application application) {
+        UserRoomDatabase db = UserRoomDatabase.getDatabase(application);
+        mUsersDao = db.usersDao();
+        mAllUsers = mUsersDao.getAllUsersByUsername();
+    }
+
+    LiveData<List<User>> getAllRoomUsers() {
+        return mAllUsers;
+    }
+
+    void insert(User user) {
+        UserRoomDatabase.databaseWriteExecutor.execute(() -> {
+            mUsersDao.insertUser(user);
+        });
+    }
+
+
     private static UserRepository instance;
-    public static UserRepository getInstance() {
+
+    public static UserRepository getInstance(Application application) {
         if (instance == null) {
-            instance = new UserRepository();
+            instance = new UserRepository(application);
         }
         return instance;
     }

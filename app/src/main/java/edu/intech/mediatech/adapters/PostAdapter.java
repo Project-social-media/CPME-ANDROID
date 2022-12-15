@@ -26,7 +26,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
 
     private final Context ctx;
     private final List<Post> posts;
-    private PostListener listener;
+    private final PostListener listener;
 
     public PostAdapter(Context ctx, List<Post> posts, PostListener listener) {
         this.ctx = ctx;
@@ -49,7 +49,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
 
         @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = null;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            dateFormat = new SimpleDateFormat("dd/MM/YY");
+            dateFormat = new SimpleDateFormat("dd/MM/yy");
         }
         assert dateFormat != null;
         String formattedDate = dateFormat.format(posts.get(position).getDate());

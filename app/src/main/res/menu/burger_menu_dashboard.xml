@@ -8,16 +8,16 @@
             android:title=""
             android:icon="@drawable/ic_baseline_arrow_back_ios_24" />
         <item
-            android:id="@+id/accueil"
+            android:id="@+id/dashboardFragment"
             android:title="@string/burgerMenu1stOption" />
         <item
             android:id="@+id/creation_posts"
             android:title="@string/burgerMenu2ndOption" />
         <item
-            android:id="@+id/calendrier"
+            android:id="@+id/calendarFragment"
             android:title="@string/burgerMenu3rdOption" />
         <item
-            android:id="@+id/parametres"
+            android:id="@+id/settingsFragment"
             android:title="@string/burgerMenu4thOption" />
         <item
             android:id="@+id/deconnexion"
