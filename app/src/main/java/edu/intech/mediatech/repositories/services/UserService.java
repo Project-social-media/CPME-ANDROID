@@ -12,7 +12,8 @@ public interface UserService {
     @GET("api/users/all")
     Call<List<User>> getUsers();
 
-    //POST request to authenticate to the api
+    @GET("api/users/username/{username}")
+    Call<User> getUserByUsername(String username);
 
     @POST("api/auth/login")
     Call<User> authenticate(@Body User user);

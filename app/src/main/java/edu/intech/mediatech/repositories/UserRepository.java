@@ -69,6 +69,27 @@ public class UserRepository {
         return data;
     }
 
+    public LiveData<User> getUserByUsername(String username) {
+        final MutableLiveData<User> data = new MutableLiveData<>();
+        Call<User> call = ApiService.getUserService().getUserByUsername(username);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                Log.d("request", "onResponse: " + response.toString());
+                User user = response.body();
+                assert user != null;
+                data.setValue(user);
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Log.d("TAG", "onFailure: " + call.request().toString());
+                Log.d("TAG", "onFailure: " + t.getMessage());
+            }
+        });
+        return data;
+    }
+
     //implement post method authenticate and return result
 
     public LiveData<User> authenticateUser(User user) {
