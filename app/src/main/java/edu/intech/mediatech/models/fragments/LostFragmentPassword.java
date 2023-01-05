@@ -14,8 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import java.util.Objects;
 import java.util.Properties;
+
 
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -27,7 +27,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import edu.intech.mediatech.R;
-import edu.intech.mediatech.databinding.FragmentConnexionBinding;
 import edu.intech.mediatech.databinding.FragmentLostPasswordBinding;
 import kotlin.text.Regex;
 
@@ -88,7 +87,7 @@ public class LostFragmentPassword extends Fragment {
 // Create a new Session object
         Session session = Session.getInstance(props,
                 new Authenticator() {
-                    protected PasswordAuthentication getPasswordAuthentication() {
+                    protected PasswordAuthentication n () {
                         // Set your email address and password
                         return new PasswordAuthentication("docnahel@outlook.fr", "E!s57EqP53qbPmEDWL9q");
                     }
@@ -102,7 +101,7 @@ public class LostFragmentPassword extends Fragment {
                     Message message = new MimeMessage(session);
 
                     // Set the sender and recipient for the email
-                    message.setFrom(new InternetAddress("mediatechuwu@gmail.com"));
+                    message.setFrom(new InternetAddress("docnahel@outlook.fr"));
                     message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(binding.fgtPwdEmailBox.getText().toString()));
 
                     // Set the subject and body for the email
@@ -113,7 +112,7 @@ public class LostFragmentPassword extends Fragment {
                     Transport.send(message);
                     Log.d("Mail", "Mail SENT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ");
                 } catch (MessagingException e) {
-                    e.printStackTrace();
+                    Log.e("MAIL", "Error sending email", e);
                 }
 
                 Toast.makeText(getContext(), "Email envoyé", Toast.LENGTH_SHORT).show();
