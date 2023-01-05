@@ -3,32 +3,36 @@ package edu.intech.mediatech.models.fragments;
 import static android.content.Context.MODE_PRIVATE;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
+import org.mindrot.jbcrypt.BCrypt;
+
 import java.util.Map;
+import java.util.Random;
 
 import edu.intech.mediatech.databinding.FragmentDashboardBinding;
+import edu.intech.mediatech.models.bdd.User;
 import edu.intech.mediatech.repositories.StatsRepository;
+import edu.intech.mediatech.viewmodels.UserViewModel;
 
 
 public class DashboardFragment extends Fragment {
 
     FragmentDashboardBinding binding;
     SharedPreferences sharedPref;
+    UserViewModel userViewModel;
 
     public DashboardFragment() {
         // Required empty public constructor
@@ -43,6 +47,7 @@ public class DashboardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
+        this.userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         return binding.getRoot();
     }
 
@@ -69,6 +74,16 @@ public class DashboardFragment extends Fragment {
             }
 
         });
+
+        binding.facebookBtn.setOnClickListener(v -> {
+            String newPassword = BCrypt.hashpw(String.valueOf(new Random().nextInt(100000)), BCrypt.gensalt(12));
+            String cuttedPassword = newPassword.substring(7, 17);
+
+            User updateUserPassword = new User("", cuttedPassword);
+            userViewModel.updateUser("tom", updateUserPassword);
+        });
+
+        //gIFQZG.B/W
 
     }
 }

@@ -1,22 +1,9 @@
 package edu.intech.mediatech.models.bdd;
 
-import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-
-@Entity(tableName = "users")
 public class User {
 
-    @PrimaryKey
-    @ColumnInfo(name = "id")
-    @NonNull
     private String id;
-
-    @ColumnInfo(name = "username")
     private String username;
-
-    @ColumnInfo(name = "password")
     private String password;
 
     public User(String id, String username, String password) {
@@ -25,8 +12,8 @@ public class User {
         this.password = password;
     }
 
-    public User(String email, String password) {
-        this.username = email;
+    public User(String username, String password) {
+        this.username = username;
         this.password = password;
     }
 
@@ -57,7 +44,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "usrname='" + username + '\'' +
+                "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }
