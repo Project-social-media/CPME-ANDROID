@@ -1,6 +1,7 @@
 package edu.intech.mediatech.models;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +17,7 @@ import edu.intech.mediatech.databinding.ActivityDashboardBinding;
 public class DashboardActivity extends AppCompatActivity {
 
     ActivityDashboardBinding binding;
+    SharedPreferences sharedPref;
 
     @SuppressLint("NonConstantResourceId")
     @Override
@@ -39,6 +41,9 @@ public class DashboardActivity extends AppCompatActivity {
 
         binding.navView.setNavigationItemSelectedListener(item -> {
             if (item.getItemId() == R.id.deconnexion) {
+                sharedPref = getSharedPreferences("preferences", MODE_PRIVATE);
+                sharedPref.edit().putString("user_username", "").apply();
+                sharedPref.edit().putString("user_password", "").apply();
                 finish();
             }
 

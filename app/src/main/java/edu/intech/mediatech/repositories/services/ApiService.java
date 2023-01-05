@@ -25,4 +25,8 @@ public class ApiService {
     public static PostService getPostService() {
         return getRetrofitInstance().create(PostService.class);
     }
+
+    public static StatsService getStatsService() {
+        return getRetrofitInstance().create(StatsService.class);
+    }
 }
