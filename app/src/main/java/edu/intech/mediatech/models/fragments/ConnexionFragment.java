@@ -1,6 +1,9 @@
 package edu.intech.mediatech.models.fragments;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -27,6 +30,8 @@ public class ConnexionFragment extends Fragment {
 
     FragmentConnexionBinding binding;
     UserViewModel userViewModel;
+    SharedPreferences sharedPref;
+
 
     public ConnexionFragment() {
         // Required empty public constructor
@@ -49,6 +54,10 @@ public class ConnexionFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        sharedPref = getContext().getSharedPreferences("preferences", MODE_PRIVATE);
+        String username = sharedPref.getString("user_username", "");
+        String pass = sharedPref.getString("user_password", "");
+
         binding.connexionConnectBtn.setOnClickListener(v -> {
             String email = binding.connexionUserBox.getText().toString();
             String password = binding.connexionPasswordBox.getText().toString();
@@ -60,6 +69,8 @@ public class ConnexionFragment extends Fragment {
                     Toast.makeText(getContext(), "Connexion réussie", Toast.LENGTH_SHORT).show();
                     binding.connexionUserBox.setText("");
                     binding.connexionPasswordBox.setText("");
+                    sharedPref.edit().putString("user_username", email).apply();
+                    sharedPref.edit().putString("user_password", password).apply();
                     Intent intent = new Intent(getActivity(), DashboardActivity.class);
                     startActivity(intent);
                 } else {
@@ -71,5 +82,12 @@ public class ConnexionFragment extends Fragment {
         binding.connexionForgotPwdBtn.setOnClickListener(v -> {
             Navigation.findNavController(v).navigate(R.id.action_connexionFragment_to_lostFragmentPassword);
         });
+
+        //if user credentials are stored in shared preferences, we log him in
+        if (!username.equals("") && !pass.equals("")) {
+            binding.connexionUserBox.setText(username);
+            binding.connexionPasswordBox.setText(pass);
+            binding.connexionConnectBtn.performClick();
+        }
     }
 }
