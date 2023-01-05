@@ -74,16 +74,5 @@ public class DashboardFragment extends Fragment {
             }
 
         });
-
-        binding.facebookBtn.setOnClickListener(v -> {
-            String newPassword = BCrypt.hashpw(String.valueOf(new Random().nextInt(100000)), BCrypt.gensalt(12));
-            String cuttedPassword = newPassword.substring(7, 17);
-
-            User updateUserPassword = new User("", cuttedPassword);
-            userViewModel.updateUser("tom", updateUserPassword);
-        });
-
-        //gIFQZG.B/W
-
     }
 }

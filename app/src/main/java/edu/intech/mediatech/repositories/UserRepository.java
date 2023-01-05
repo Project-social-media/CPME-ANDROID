@@ -49,7 +49,31 @@ public class UserRepository {
         return data;
     }
 
-    //implement post method authenticate and return result
+    public LiveData<User> getUserByEmail(String email) {
+        final MutableLiveData<User> data = new MutableLiveData<>();
+        Call<User> call = ApiService.getUserService().getUserByMail(email);
+
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.code() == 200) {
+                    User user = response.body();
+                    data.setValue(user);
+                } else {
+                    data.setValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Log.d("TAG", "onFailure: " + call.request().toString());
+                Log.d("TAG", "onFailure: " + t.getMessage());
+                data.setValue(null);
+            }
+        });
+        return data;
+    }
+
 
     public LiveData<User> authenticateUser(User user) {
         final MutableLiveData<User> data = new MutableLiveData<>();
@@ -57,7 +81,6 @@ public class UserRepository {
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                Log.d("request", "onResponse: " + response.toString());
                 User user = response.body();
                 data.setValue(user);
             }
@@ -71,7 +94,6 @@ public class UserRepository {
         return data;
     }
 
-    //implement put method update
     public void updateUser(String username, User user) {
         Call<User> call = ApiService.getUserService().updateUser(username, user);
         call.enqueue(new Callback<User>() {

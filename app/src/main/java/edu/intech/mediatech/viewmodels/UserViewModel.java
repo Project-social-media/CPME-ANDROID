@@ -2,7 +2,6 @@ package edu.intech.mediatech.viewmodels;
 
 
 import android.app.Application;
-import android.util.Log;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
@@ -17,6 +16,10 @@ public class UserViewModel extends AndroidViewModel {
     public UserViewModel(Application application) {
         super(application);
         this.userRepository = UserRepository.getInstance();
+    }
+
+    public LiveData<User> getUserByMail(String mail) {
+        return this.userRepository.getUserByEmail(mail);
     }
 
     public LiveData<User> authenticateUser(User user) {

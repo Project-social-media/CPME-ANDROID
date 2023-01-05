@@ -11,6 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,6 +68,7 @@ public class ConnexionFragment extends Fragment {
 
             userViewModel.authenticateUser(u).observe(getViewLifecycleOwner(), user -> {
                 if (user != null) {
+                    Log.d("ConnexionFragment", "User authenticated");
                     Toast.makeText(getContext(), "Connexion réussie", Toast.LENGTH_SHORT).show();
                     binding.connexionUserBox.setText("");
                     binding.connexionPasswordBox.setText("");

@@ -14,10 +14,13 @@ public interface UserService {
     @GET("api/users/all")
     Call<List<User>> getUsers();
 
+    @GET("api/users/email/{email}")
+    Call<User> getUserByMail(@Path("email") String email);
+
     @POST("api/auth/login")
     Call<User> authenticate(@Body User user);
 
-    @PUT("api/users/update/{username}")
-    Call<User> updateUser(@Path("username") String username, @Body User user);
+    @PUT("api/users/update/{email}")
+    Call<User> updateUser(@Path("email") String email, @Body User user);
 
 }
