@@ -87,7 +87,7 @@ public class LostFragmentPassword extends Fragment {
 // Create a new Session object
         Session session = Session.getInstance(props,
                 new Authenticator() {
-                    protected PasswordAuthentication n () {
+                    protected PasswordAuthentication getPasswordAuthentication() {
                         // Set your email address and password
                         return new PasswordAuthentication("docnahel@outlook.fr", "E!s57EqP53qbPmEDWL9q");
                     }
