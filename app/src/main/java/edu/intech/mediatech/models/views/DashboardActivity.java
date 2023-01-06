@@ -1,4 +1,4 @@
-package edu.intech.mediatech.models;
+package edu.intech.mediatech.models.views;
 
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
@@ -42,6 +42,7 @@ public class DashboardActivity extends AppCompatActivity {
         binding.navView.setNavigationItemSelectedListener(item -> {
             if (item.getItemId() == R.id.deconnexion) {
                 sharedPref = getSharedPreferences("preferences", MODE_PRIVATE);
+                sharedPref.edit().putString("user_token", "").apply();
                 sharedPref.edit().putString("user_username", "").apply();
                 sharedPref.edit().putString("user_password", "").apply();
                 finish();

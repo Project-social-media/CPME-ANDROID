@@ -1,4 +1,4 @@
-package edu.intech.mediatech.models;
+package edu.intech.mediatech.models.views;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,8 +8,6 @@ import android.os.Bundle;
 import edu.intech.mediatech.R;
 
 public class MainActivity extends AppCompatActivity {
-
-    private DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

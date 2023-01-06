@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/dashboardFragment"
-        android:name="edu.intech.mediatech.models.fragments.DashboardFragment"
+        android:name="edu.intech.mediatech.models.views.DashboardFragment"
         android:label="DashboardFragment" >
         <action
             android:id="@+id/action_dashboardFragment_to_calendarFragment"
@@ -18,10 +18,13 @@
         <action
             android:id="@+id/action_dashboardFragment_to_editionFragment"
             app:destination="@id/editionFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_gestionFragment2"
+            app:destination="@id/gestionFragment2" />
     </fragment>
     <fragment
         android:id="@+id/calendarFragment"
-        android:name="edu.intech.mediatech.models.fragments.CalendarFragment"
+        android:name="edu.intech.mediatech.models.views.CalendarFragment"
         android:label="fragment_calendar"
         tools:layout="@layout/fragment_calendar" >
         <action
@@ -30,17 +33,22 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="edu.intech.mediatech.models.fragments.SettingsFragment"
+        android:name="edu.intech.mediatech.models.views.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/postDetailFragment"
-        android:name="edu.intech.mediatech.models.fragments.PostDetailFragment"
+        android:name="edu.intech.mediatech.models.views.PostDetailFragment"
         android:label="fragment_post_detail"
         tools:layout="@layout/fragment_post_detail" />
     <fragment
         android:id="@+id/editionFragment"
-        android:name="edu.intech.mediatech.models.fragments.EditionFragment"
+        android:name="edu.intech.mediatech.models.views.EditionFragment"
         android:label="fragment_edition"
         tools:layout="@layout/fragment_edition" />
+    <fragment
+        android:id="@+id/gestionFragment2"
+        android:name="edu.intech.mediatech.models.views.GestionFragment"
+        android:label="fragment_gestion"
+        tools:layout="@layout/fragment_gestion" />
 </navigation>

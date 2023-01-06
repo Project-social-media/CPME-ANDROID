@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="top"
     android:elevation="4dp"
-    tools:context=".models.MainActivity">
+    tools:context=".models.views.MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/edition_box_layout"

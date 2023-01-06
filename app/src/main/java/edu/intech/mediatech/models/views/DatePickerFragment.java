@@ -1,4 +1,4 @@
-package edu.intech.mediatech.models.fragments;
+package edu.intech.mediatech.models.views;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;

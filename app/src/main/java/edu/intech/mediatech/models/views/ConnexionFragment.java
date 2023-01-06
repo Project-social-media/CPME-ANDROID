@@ -1,4 +1,4 @@
-package edu.intech.mediatech.models.fragments;
+package edu.intech.mediatech.models.views;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -12,19 +12,14 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import java.io.IOException;
-
 import edu.intech.mediatech.R;
 import edu.intech.mediatech.databinding.FragmentConnexionBinding;
-import edu.intech.mediatech.models.DashboardActivity;
 import edu.intech.mediatech.models.bdd.User;
-import edu.intech.mediatech.repositories.UserRepository;
 import edu.intech.mediatech.viewmodels.UserViewModel;
 
 public class ConnexionFragment extends Fragment {
@@ -68,10 +63,11 @@ public class ConnexionFragment extends Fragment {
 
             userViewModel.authenticateUser(u).observe(getViewLifecycleOwner(), user -> {
                 if (user != null) {
-                    Log.d("ConnexionFragment", "User authenticated");
+                    String token = user.getToken();
                     Toast.makeText(getContext(), "Connexion réussie", Toast.LENGTH_SHORT).show();
                     binding.connexionUserBox.setText("");
                     binding.connexionPasswordBox.setText("");
+                    sharedPref.edit().putString("user_token", token).apply();
                     sharedPref.edit().putString("user_username", email).apply();
                     sharedPref.edit().putString("user_password", password).apply();
                     Intent intent = new Intent(getActivity(), DashboardActivity.class);

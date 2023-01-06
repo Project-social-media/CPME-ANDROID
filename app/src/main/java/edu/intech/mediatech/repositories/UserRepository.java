@@ -81,7 +81,7 @@ public class UserRepository {
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                User user = response.body();
+                User user = new User(response.headers().get("Authorization"));
                 data.setValue(user);
             }
 

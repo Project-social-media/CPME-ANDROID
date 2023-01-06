@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="top|left"
     android:elevation="4dp"
-    tools:context=".models.MainActivity">
+    tools:context=".models.views.MainActivity">
 
 
     <ImageView

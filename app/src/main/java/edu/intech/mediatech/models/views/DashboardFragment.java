@@ -1,8 +1,7 @@
-package edu.intech.mediatech.models.fragments;
+package edu.intech.mediatech.models.views;
 
 import static android.content.Context.MODE_PRIVATE;
 
-import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,16 +13,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import org.mindrot.jbcrypt.BCrypt;
-
 import java.util.Map;
-import java.util.Random;
 
 import edu.intech.mediatech.databinding.FragmentDashboardBinding;
-import edu.intech.mediatech.models.bdd.User;
 import edu.intech.mediatech.repositories.StatsRepository;
 import edu.intech.mediatech.viewmodels.UserViewModel;
 
@@ -51,12 +45,13 @@ public class DashboardFragment extends Fragment {
         return binding.getRoot();
     }
 
-    @SuppressLint("QueryPermissionsNeeded")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         sharedPref = getContext().getSharedPreferences("preferences", MODE_PRIVATE);
-        LiveData<Map<String, Integer>> listData = StatsRepository.getInstance().getTwitterUserPostStats();
+        Log.d("tokentesmorts", "onViewCreated: " + sharedPref.getString("user_token", ""));
+        String token = sharedPref.getString("user_token", null);
+        LiveData<Map<String, Integer>> listData = StatsRepository.getInstance().getTwitterUserPostStats(token);
 
         //print in console list
         listData.observe(getViewLifecycleOwner(), stats -> {

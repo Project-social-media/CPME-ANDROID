@@ -1,9 +1,8 @@
-package edu.intech.mediatech.models.fragments;
+package edu.intech.mediatech.models.views;
 
 import static android.content.Context.MODE_PRIVATE;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;

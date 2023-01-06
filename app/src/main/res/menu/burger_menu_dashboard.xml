@@ -20,6 +20,9 @@
             android:id="@+id/settingsFragment"
             android:title="@string/burgerMenu4thOption" />
         <item
+            android:id="@+id/gestionFragment"
+            android:title="Gestion du compte" />
+        <item
             android:id="@+id/deconnexion"
             android:title="@string/burgerMenu5thOption" />
     </group>

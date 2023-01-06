@@ -1,4 +1,4 @@
-package edu.intech.mediatech.models.fragments;
+package edu.intech.mediatech.models.views;
 
 import android.os.Bundle;
 
@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
@@ -26,19 +25,17 @@ import android.util.Log;
 
 import org.mindrot.jbcrypt.BCrypt;
 
-import java.util.Objects;
+import javax.mail.PasswordAuthentication;
 import java.util.Properties;
 import java.util.Random;
 
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-
 
 public class LostFragmentPassword extends Fragment {
 
@@ -115,9 +112,18 @@ public class LostFragmentPassword extends Fragment {
 
                             message.setFrom(new InternetAddress("docnahel@outlook.fr"));
                             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(binding.fgtPwdEmailBox.getText().toString()));
+                            message.setSubject("MEDIATECH : Nouveau mot de passe");
 
-                            message.setSubject("Test");
-                            message.setText("Votre nouveau mot de passe est : " + cuttedPassword);
+                            message.setText("Bonjour,\n" +
+                                    "\n" +
+                                    "Voici votre nouveau mot de passe généré automatiquement. Ne le communiquez à personne.\n" +
+                                    "\n" +
+                                    cuttedPassword +
+                                    "\n" +
+                                    "\n" +
+                                    "Prenez soin de le conserver en lieu sûr.\n" +
+                                    "\n" +
+                                    "Bonne journée.\n");
 
                             Transport.send(message);
                             Log.d("Mail", "Mail sent !");

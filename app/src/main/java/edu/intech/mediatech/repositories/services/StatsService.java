@@ -4,13 +4,11 @@ import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 
 public interface StatsService {
-    @GET("api/stats/twitter/user")
-    Call<Integer> getTwitterUserFollowers();
-
     @GET("api/stats/twitter/stats")
-    Call<Map<String, Integer>> getTwitterPostStats();
+    Call<Map<String, Integer>> getTwitterPostStats(@Header("Authorization") String token);
 
 
 }
