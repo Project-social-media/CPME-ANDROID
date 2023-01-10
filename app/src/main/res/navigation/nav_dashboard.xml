@@ -19,8 +19,8 @@
             android:id="@+id/action_dashboardFragment_to_editionFragment"
             app:destination="@id/editionFragment" />
         <action
-            android:id="@+id/action_dashboardFragment_to_gestionFragment2"
-            app:destination="@id/gestionFragment2" />
+            android:id="@+id/action_dashboardFragment_to_compteFragment"
+            app:destination="@id/compteFragment" />
     </fragment>
     <fragment
         android:id="@+id/calendarFragment"
@@ -47,8 +47,8 @@
         android:label="fragment_edition"
         tools:layout="@layout/fragment_edition" />
     <fragment
-        android:id="@+id/gestionFragment2"
-        android:name="edu.intech.mediatech.models.views.GestionFragment"
-        android:label="fragment_gestion"
-        tools:layout="@layout/fragment_gestion" />
+        android:id="@+id/compteFragment"
+        android:name="edu.intech.mediatech.models.views.CompteFragment"
+        android:label="fragment_compte"
+        tools:layout="@layout/fragment_compte" />
 </navigation>

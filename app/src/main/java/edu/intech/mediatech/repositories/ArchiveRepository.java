@@ -7,29 +7,30 @@ import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
 
+import edu.intech.mediatech.models.bdd.Archive;
 import edu.intech.mediatech.models.bdd.Post;
 import edu.intech.mediatech.repositories.services.ApiService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PostRepository {
+public class ArchiveRepository {
 
-    private static PostRepository instance;
+    private PostRepository instance;
 
-    public static PostRepository getInstance() {
+    public PostRepository getInstance() {
         if (instance == null) {
             instance = new PostRepository();
         }
         return instance;
     }
 
-    public LiveData<List<Post>> getAllPosts() {
-        final MutableLiveData<List<Post>> data = new MutableLiveData<>();
-        ApiService.getPostService().getAllPosts()
-                .enqueue(new Callback<List<Post>>() {
+    public LiveData<List<Archive>> getAllArchives() {
+        final MutableLiveData<List<Archive>> data = new MutableLiveData<>();
+        ApiService.getArchiveService().getAllArchives()
+                .enqueue(new Callback<List<Archive>>() {
                     @Override
-                    public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
+                    public void onResponse(Call<List<Archive>> call, Response<List<Archive>> response) {
                         if (response.isSuccessful()) {
                             data.setValue(response.body());
                         } else {
@@ -38,11 +39,10 @@ public class PostRepository {
                     }
 
                     @Override
-                    public void onFailure(Call<List<Post>> call, Throwable t) {
+                    public void onFailure(Call<List<Archive>> call, Throwable t) {
                         Log.e("TAG", "Error: " + t.getMessage());
                     }
                 });
         return data;
     }
-
 }

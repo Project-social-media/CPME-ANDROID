@@ -12,7 +12,7 @@
     <string name="validateRecoverContent">Valider</string>
 
 
-    <string name="dashboardStats">Statistiques (30 derniers jours)</string>
+    <string name="dashboardStats">Statistiques</string>
     <string name="dashboardTypeStats">(Abonnés)</string>
     <string name="dashboardAccessbtn">Accéder</string>
     <string name="dashboardTitle">Bienvenue Anthony</string>

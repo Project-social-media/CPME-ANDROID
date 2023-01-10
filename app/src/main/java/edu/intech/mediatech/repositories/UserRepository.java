@@ -27,27 +27,28 @@ public class UserRepository {
         return instance;
     }
 
-    public LiveData<List<User>> getAllUsers() {
-        final MutableLiveData<List<User>> data = new MutableLiveData<>();
-        Call<List<User>> call = ApiService.getUserService().getUsers();
-        call.enqueue(new Callback<List<User>>() {
+    public LiveData<User> getUserByToken(String token) {
+        final MutableLiveData<User> data = new MutableLiveData<>();
+        Call<User> call = ApiService.getUserService().getUserByToken("Bearer " + token);
+        call.enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+            public void onResponse(Call<User> call, Response<User> response) {
                 Log.d("request", "onResponse: " + response.toString());
-                List<User> users = response.body();
-                assert users != null;
-                data.setValue(users);
-
+                User user = response.body();
+                assert user != null;
+                data.setValue(user);
             }
 
             @Override
-            public void onFailure(Call<List<User>> call, Throwable t) {
+            public void onFailure(Call<User> call, Throwable t) {
                 Log.d("TAG", "onFailure: " + call.request().toString());
                 Log.d("TAG", "onFailure: " + t.getMessage());
             }
         });
         return data;
     }
+
+
 
     public LiveData<User> getUserByEmail(String email) {
         final MutableLiveData<User> data = new MutableLiveData<>();
@@ -75,14 +76,14 @@ public class UserRepository {
     }
 
 
-    public LiveData<User> authenticateUser(User user) {
-        final MutableLiveData<User> data = new MutableLiveData<>();
+    public LiveData<String> authenticateUser(User user) {
+        final MutableLiveData<String> data = new MutableLiveData<>();
         Call<User> call = ApiService.getUserService().authenticate(user);
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                User user = new User(response.headers().get("Authorization"));
-                data.setValue(user);
+                String token = response.headers().get("Authorization");
+                data.setValue(token);
             }
 
             @Override

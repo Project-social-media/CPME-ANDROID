@@ -20,7 +20,6 @@ import java.util.Map;
 public class StatsRepository {
 
     private static StatsRepository instance;
-    SharedPreferences sharedPref;
 
     public static StatsRepository getInstance() {
         if (instance == null) {
@@ -49,7 +48,7 @@ public class StatsRepository {
         };
 
         // Utilisation du callback global pour l'appel à l'API
-        Call<Map<String, Integer>> call = ApiService.getStatsService().getTwitterPostStats(token);
+        Call<Map<String, Integer>> call = ApiService.getStatsService().getTwitterPostStats("Bearer " + token);
         call.enqueue(callback);
         return data;
     }

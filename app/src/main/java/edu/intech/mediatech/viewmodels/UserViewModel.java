@@ -18,11 +18,15 @@ public class UserViewModel extends AndroidViewModel {
         this.userRepository = UserRepository.getInstance();
     }
 
+    public LiveData<User> getUserByToken(String token) {
+        return this.userRepository.getUserByToken(token);
+    }
+
     public LiveData<User> getUserByMail(String mail) {
         return this.userRepository.getUserByEmail(mail);
     }
 
-    public LiveData<User> authenticateUser(User user) {
+    public LiveData<String> authenticateUser(User user) {
         return userRepository.authenticateUser(user);
     }
 

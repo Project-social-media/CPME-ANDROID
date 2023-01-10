@@ -5,7 +5,6 @@ import static android.content.Context.MODE_PRIVATE;
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,47 +44,37 @@ public class SettingsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         sharedPref = getContext().getSharedPreferences("preferences", MODE_PRIVATE);
-        String param = sharedPref.getString("user_dashboard_options", "default");
+        String param = sharedPref.getString("user_dashboard_network", "default");
 
-        if (param.equals("subs") || param.equals("default")) {
-            binding.dataRadioGroup.check(R.id.subs_radio);
-        } else if (param.equals("likes")) {
-            binding.dataRadioGroup.check(R.id.likes_radio);
-        } else if (param.equals("views")) {
-            binding.dataRadioGroup.check(R.id.views_radio);
+        if (param.equals("twitter") || param.equals("default")) {
+            binding.dataRadioGroup.check(R.id.twt_radio);
+        } else if (param.equals("facebook")) {
+            binding.dataRadioGroup.check(R.id.fb_radio);
+        } else if (param.equals("linkedin")) {
+            binding.dataRadioGroup.check(R.id.lkd_radio);
         } else {
-            binding.dataRadioGroup.check(R.id.shares_radio);
+            binding.dataRadioGroup.check(R.id.insta_radio);
         }
 
 
         binding.dataRadioGroup.setOnCheckedChangeListener((group, checkedId) -> {
             switch (checkedId) {
-                case R.id.subs_radio:
+                case R.id.twt_radio:
                     //print "subs"
-                    sharedPref.edit().putString("user_dashboard_options", "subs").apply();
+                    sharedPref.edit().putString("user_dashboard_network", "twitter").apply();
                     break;
-                case R.id.likes_radio:
+                case R.id.fb_radio:
                     // do operations specific to this selection
-                    sharedPref.edit().putString("user_dashboard_options", "likes").apply();
+                    sharedPref.edit().putString("user_dashboard_network", "facebook").apply();
                     break;
-                case R.id.views_radio:
+                case R.id.lkd_radio:
                     // do operations specific to this selection
-                    sharedPref.edit().putString("user_dashboard_options", "views").apply();
+                    sharedPref.edit().putString("user_dashboard_network", "linkedin").apply();
                     break;
-                case R.id.shares_radio:
+                case R.id.insta_radio:
                     // do operations specific to this selection
-                    sharedPref.edit().putString("user_dashboard_options", "shares").apply();
+                    sharedPref.edit().putString("user_dashboard_network", "instagram").apply();
                     break;
-            }
-        });
-
-        binding.activateDarkMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked) {
-                // The toggle is enabled
-                Log.d("DarkMode", "Dark mode is enabled");
-            } else {
-                // The toggle is disabled
-                Log.d("DarkMode", "Dark mode is disabled");
             }
         });
     }

@@ -19,6 +19,7 @@ import java.util.Date;
 import java.util.List;
 
 import edu.intech.mediatech.R;
+import edu.intech.mediatech.databinding.PostCalendarLayoutBinding;
 import edu.intech.mediatech.models.bdd.Post;
 import edu.intech.mediatech.models.interfaces.PostListener;
 
@@ -27,6 +28,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
     private final Context ctx;
     private final List<Post> posts;
     private final PostListener listener;
+    PostCalendarLayoutBinding binding;
 
     public PostAdapter(Context ctx, List<Post> posts, PostListener listener) {
         this.ctx = ctx;
@@ -37,37 +39,31 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
     @NonNull
     @Override
     public PostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(ctx);
-        View view = inflater.inflate(R.layout.post_calendar_layout, parent, false);
-        return new PostViewHolder(view);
+        binding = PostCalendarLayoutBinding.inflate(LayoutInflater.from(ctx), parent, false);
+        return new PostViewHolder(binding);
     }
 
-    @SuppressLint("SimpleDateFormat")
+    @SuppressLint({"SimpleDateFormat", "SetTextI18n"})
     @Override
     public void onBindViewHolder(@NonNull PostViewHolder holder, int position) {
-        holder.message.setText(String.valueOf(posts.get(position).getMessage()).substring(0, 7).concat("..."));
+        Post post = posts.get(position);
+        holder.binding.postMessage.setText(post.getMessage() + "...");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
+        String formattedDate = dateFormat.format(post.getDate());
+        holder.binding.dateText.setText("Prévu pour le " + formattedDate + " sur");
+        holder.binding.statusColor.setText("Statut : non posté");
 
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            dateFormat = new SimpleDateFormat("dd/MM/yy");
-        }
-        assert dateFormat != null;
-        String formattedDate = dateFormat.format(posts.get(position).getDate());
-
-        holder.date.setText(formattedDate);
-
-        long currentTimeMillis = System.currentTimeMillis();
-        Date currentDate = new Date(currentTimeMillis);
-
-        if (posts.get(position).getDate().before(currentDate)) {
-            holder.statusIcon.setImageDrawable(ContextCompat.getDrawable(ctx, R.drawable.finished));
-        } else {
-            holder.statusIcon.setImageDrawable(ContextCompat.getDrawable(ctx, R.drawable.timed));
+        if (post.isFacebook()) {
+            holder.binding.imageNetwork.setImageDrawable(ContextCompat.getDrawable(ctx, R.drawable.facebook_logo));
+        } else if (post.isTwitter()) {
+            holder.binding.imageNetwork.setImageDrawable(ContextCompat.getDrawable(ctx, R.drawable.twitter_logo));
+        } else if (post.isLinkedin()) {
+            holder.binding.imageNetwork.setImageDrawable(ContextCompat.getDrawable(ctx, R.drawable.linkedin_logo));
+        } else if (post.isInstagram()) {
+            holder.binding.imageNetwork.setImageDrawable(ContextCompat.getDrawable(ctx, R.drawable.instagram_logo));
         }
 
-        holder.constraintLayout.setOnClickListener(v -> {
-            listener.onPostClicked(posts.get(position));
-        });
+        holder.binding.postMainLayout.setOnClickListener(v -> listener.onPostClicked(post));
     }
 
     @Override
@@ -76,17 +72,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
     }
 
     protected static class PostViewHolder extends RecyclerView.ViewHolder {
-        TextView message;
-        ImageView statusIcon;
-        TextView date;
-        ConstraintLayout constraintLayout;
+        PostCalendarLayoutBinding binding;
 
-        private PostViewHolder(View itemView) {
-            super(itemView);
-            this.message = itemView.findViewById(R.id.post_message);
-            this.statusIcon = itemView.findViewById(R.id.status_icon);
-            this.date = itemView.findViewById(R.id.date_text);
-            this.constraintLayout = itemView.findViewById(R.id.post_main_layout);
+        private PostViewHolder(PostCalendarLayoutBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
     }
 }

@@ -5,7 +5,7 @@
     android:id="@+id/gestion_main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".models.views.GestionFragment">
+    tools:context=".models.views.CompteFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/gestion_box"
@@ -64,13 +64,30 @@
             android:layout_marginEnd="32dp"
             android:ems="10"
             android:fontFamily="@font/montserrat_medium"
-            android:hint="Mot de passe..."
+            android:hint="Nouveau mot de passe..."
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            app:layout_constraintBottom_toTopOf="@+id/confirm_tb"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/username_tb"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <EditText
+            android:id="@+id/confirm_tb"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:ems="10"
+            android:fontFamily="@font/montserrat_medium"
+            android:hint="Confirmer mot de passe..."
             android:inputType="textPassword"
             android:minHeight="48dp"
             app:layout_constraintBottom_toTopOf="@+id/update_user_tb"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/username_tb"
+            app:layout_constraintTop_toBottomOf="@+id/password_tb"
             app:layout_constraintVertical_bias="0.5" />
 
         <Button
@@ -86,7 +103,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/password_tb"
+            app:layout_constraintTop_toBottomOf="@+id/confirm_tb"
             app:layout_constraintVertical_bias="0.5" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
